@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block content%}
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 col-xs-12">
+      <h3>Raw data</h3>
+      {% for wine in wines %}
+        <p>
+        {{ wine.pk }} - {{ wine.json }}
+        <img src="{{ MEDIA_URL}}{{ wine.tmp_url}}" alt="photo"/>
+      {% endfor %}
+      <hr>
+      Number of rows: {{wines.count}}
+      <p>
+      <a class="btn btn-primary"  href="{% url 'upload-file' %}">Add new</a>
+    </div>
+  </div>
+</div>
+
+
+{% endblock%}
+

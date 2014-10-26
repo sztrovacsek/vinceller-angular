@@ -1,13 +1,53 @@
 import logging
 import json
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.core.urlresolvers import reverse
+from django.http import HttpResponse
+
 from django.contrib import messages
 from django import forms
 from django.conf import settings
 from .models import *
 
 logger = logging.getLogger(__name__)
+
+
+def raw_wine_list(request):
+    wines = Wine.objects.all()
+    data = []
+    for wine in wines:
+        # assume it contains photo_url
+        raw_wine_data = json.loads(wine.json)
+        wine_data = {}
+        wine_data["id"] =  wine.pk
+        wine_data["age"] =  wine.pk
+        wine_data["name"] = "Duennium 2009"
+        wine_data["snippet"] = "The best Hungarian wine ever"
+        wine_data["imageUrl"] = "/uploads/{0}".format(raw_wine_data["photo_url"])
+        wine_data["bla"] = "(and some further information should come here)"
+        data.append(wine_data)
+    return HttpResponse(
+        json.dumps(data, sort_keys=True, separators=(',',':'), indent=4),
+        content_type='application/json'
+    )
+
+
+def raw_wine_detail(request, wine_id):
+    wine = get_object_or_404(Wine, pk=wine_id)
+    data = {}
+    # assume it contains photo_url
+    raw_wine_data = json.loads(wine.json)
+    data["id"] =  wine.pk
+    data["age"] =  wine.pk
+    data["name"] = "Duennium 2009"
+    data["snippet"] = "The best Hungarian wine ever"
+    data["imageUrl"] = "/uploads/{0}".format(raw_wine_data["photo_url"])
+    data["bla"] = "(and some further information should come here)"
+    
+    return HttpResponse(
+        json.dumps(data, sort_keys=True, separators=(',',':'), indent=4),
+        content_type='application/json'
+    )
 
 
 def raw_view(request):

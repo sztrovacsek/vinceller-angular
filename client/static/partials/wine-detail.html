@@ -1,0 +1,59 @@
+<img ng-src="{{wine.imageUrl}}" class="wine">
+
+<h1>{{wine.name}}</h1>
+
+<!-- <p>{{wine.description}}</p>  -->
+<p>Todo: add the wine description here</p>
+
+<ul class="wine-thumbs">
+  <li ng-repeat="img in wine.images">
+    <img ng-src="{{img}}">
+  </li>
+</ul>
+
+<ul class="specs">
+  <li>
+    <span>Region and Winery</span>
+    <dl>
+      <dt>Region</dt>
+      <dd>{{wine.bla}}</dd>
+    </dl>
+  </li>
+  <li>
+    <span>Grape</span>
+    <dl>
+      <dt>Name</dt>
+      <dd>{{wine.bla}}</dd>
+      <dt>Description</dt>
+      <dd>{{wine.bla}}</dd>
+      <dt>Notes</dt>
+      <dd>{{wine.bla}}</dd>
+    </dl>
+  </li>
+  <li>
+    <span>Tasting</span>
+    <dl>
+      <dt>Date</dt>
+      <dd>{{wine.bla}}</dd>
+      <dt>Score</dt>
+      <dd>{{wine.bla}}</dd>
+      <dt>Notes</dt>
+      <dd>{{wine.bla}}</dd>
+    </dl>
+  </li>
+  <li>
+    <span>Getting</span>
+    <dl>
+      <dt>Date</dt>
+      <dd>{{wine.bla}}</dd>
+      <dt>Price per bottle</dt>
+      <dd>{{wine.bla}}</dd>
+      <dt>Notes</dt>
+      <dd ng-repeat="note in wine.blas">{{note}}</dd>
+    </dl>
+  </li>
+ <li>
+    <span>Additional Notes</span>
+    <dd>{{wine.bla}}</dd>
+  </li>
+</ul>

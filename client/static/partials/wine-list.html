@@ -1,0 +1,29 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-2">
+      <!--Sidebar content-->
+
+      Search: <input class="form-control" ng-model="query">
+      Sort by:
+      <select class="form-control" ng-model="orderProp">
+        <option value="name">Alphabetical</option>
+        <option value="age">Newest</option>
+      </select>
+      Have something new?
+      <a class="btn btn-default form-control" href="/upload">Add new</a>
+
+    </div>
+    <div class="col-md-10">
+      <!--Body content-->
+
+      <ul class="wines">
+        <li ng-repeat="wine in wines | filter:query | orderBy:orderProp" class="thumbnail">
+          <a href="#/wines/{{wine.id}}" class="thumb"><img ng-src="{{wine.imageUrl}}"></a>
+          <a href="#/wines/{{wine.id}}">{{wine.name}}</a>
+          <p>{{wine.snippet}}</p>
+        </li>
+      </ul>
+
+    </div>
+  </div>
+</div>

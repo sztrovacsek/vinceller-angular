@@ -30,6 +30,21 @@ wineControllers.controller('WineDetailCtrl', ['$scope', '$routeParams', '$http',
       console.log("Saving editing");
       $scope.edit = false;
       console.log($scope.wine);
+      // post the data to the server
+      $.ajax({
+        url: "/api/wine_update",
+        data: $scope.wine,
+        type: "POST",
+        dataType: "JSON",
+        success: function(json){
+          console.log("Post succeeded");
+        }
+        /*
+        error: function(xhr, status, errorThrown){
+          console.log("Post error");
+        }
+        */
+      });
     }
 
     $scope.cancelEdit = function(){

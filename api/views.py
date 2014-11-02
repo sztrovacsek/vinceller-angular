@@ -3,6 +3,7 @@ import json
 from django.shortcuts import render, redirect, get_object_or_404
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse
+from django.views.decorators.csrf import csrf_exempt
 
 from django.contrib import messages
 from django import forms
@@ -28,6 +29,34 @@ def raw_wine_list(request):
         data.append(wine_data)
     return HttpResponse(
         json.dumps(data, sort_keys=True, separators=(',',':'), indent=4),
+        content_type='application/json'
+    )
+
+"""
+POST:{'age': '18',
+ 'bla': '(and some further information should come here)',
+ 'id': '18',
+ 'imageUrl': '/uploads/wine_photo_1.jpg',
+ 'name': 'Duennium 2010',
+ 'snippet': 'The best Hungarian wine ever'},
+
+"""
+@csrf_exempt
+def raw_wine_update(request):
+    print("Request received: {0}".format(request.POST));
+    data = request.POST
+    wine_id = data["id"]
+    if wine_id:
+        wine = Wine.objects.filter(pk=int(wine_id)).first()
+        if wine:
+            print("Wine found: {0}".format(wine))
+            wine.json = json.dumps(data)
+            import pdb; pdb.set_trace()
+            print("Wine updated: {0}".format(wine))
+            wine.save()
+    reply = {"OK"}
+    return HttpResponse(
+        json.dumps(reply, sort_keys=True, separators=(',',':'), indent=4),
         content_type='application/json'
     )
 

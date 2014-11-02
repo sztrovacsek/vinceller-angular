@@ -19,6 +19,7 @@ urlpatterns = patterns('',
     url(r'^raw$', raw_view, name='raw'),
 
     url(r'^api/wine_list$', raw_wine_list, name='api-wine-list'),
+    url(r'^api/wine_update$', raw_wine_update, name='api-wine-update'),
     url(r'^api/wine_detail/(?P<wine_id>\d+)$', raw_wine_detail, name='api-wine-detail'),
 
     url(r'^upload/', upload_file_view, name='upload-file'),

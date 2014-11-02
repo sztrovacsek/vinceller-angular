@@ -4,17 +4,19 @@
 
 var wineApp = angular.module('wineApp', [
   'ngRoute',
-  'wineControllers'
+  'wineControllers',
 ]);
 
-wineApp.config(['$routeProvider',
-  function($routeProvider) {
+wineApp.config(['$routeProvider', '$httpProvider',
+  function($routeProvider, $httpProvider){
+    $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
+    $httpProvider.defaults.xsrfCookieName = 'csrftoken';
     $routeProvider.
       when('/wines', {
         templateUrl: 'partials/wine-list.html',
         controller: 'WineListCtrl'
       }).
-      when('/wines/:phoneId', {
+      when('/wines/:wineId', {
         templateUrl: 'partials/wine-detail.html',
         controller: 'WineDetailCtrl'
       }).

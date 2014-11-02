@@ -1,59 +1,103 @@
-<img ng-src="{{wine.imageUrl}}" class="wine">
+<div class="container">
+  <div class="row">
+    <div class="col-md-3" >
+      <img ng-src="{{wine.imageUrl}}" class="wine">
+    </div>
+    <div class="col-md-9">
+      <form role="form">
+        <h1 ng-hide="edit">{{wine.name}}</h1>
+        <textarea class="form-control" ng-model="wine.name" style="margin-bottom:2em; border:solid;" ng-show="edit" rows="1" placeholder="wine title"></textarea>
+        <textarea class="form-control" ng-model="wine.description" ng-readonly="!edit" rows="4" placeholder="wine description"></textarea>
+      </form>
+      <p>
+      <p>
+      <button class="btn" ng-show="!edit" ng-click="startEdit()">
+        <i class="glyphicon glyphicon-pencil"></i> Edit
+      </button> 
+      <button class="btn btn-primary" ng-show="edit" ng-click="saveEdit()">
+        <i class="glyphicon glyphicon-star"></i> Save
+      </button> 
+      <button class="btn" ng-show="edit" ng-click="cancelEdit()">
+        <i class="glyphicon glyphicon-star-empty"></i> Cancel
+      </button> 
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3">
+      <h4>Region and Winery</h4>
+      <form role="form">
+        <div class="form-group">
+          <label>Region</label>
+          <textarea class="form-control" ng-model="wine.region" ng-disabled="!edit" rows="2" placeholder="region information"></textarea>
+        </div>
+        <div class="form-group">
+          <label>Winery</label>
+          <textarea class="form-control" ng-model="wine.winery" ng-disabled="!edit" rows="2" placeholder="winery information"></textarea>
+        </div>
+      </form>
+    </div>
+    <div class="col-md-3">
+      <h4>Grape</h4>
+      <form role="form">
+        <div class="form-group">
+          <label>Name</label>
+          <textarea class="form-control" ng-disabled="!edit" rows="1" placeholder="grape name"></textarea>
+        </div>
+        <div class="form-group">
+          <label>Description</label>
+          <textarea class="form-control" ng-disabled="!edit" rows="3" placeholder="grape description"></textarea>
+        </div>
+      </form>
+    </div>
+    <div class="col-md-3">
+      <h4>Tasting</h4>
+      <form role="form">
+        <div class="form-group">
+          <label>Date</label>
+          <textarea class="form-control" ng-model="wine.tasting.date" ng-disabled="!edit" rows="1" placeholder="date"></textarea>
+        </div>
+        <div class="form-group">
+          <label>Score</label>
+          <textarea class="form-control" ng-model="wine.tasting.score" ng-disabled="!edit" rows="1" placeholder="score"></textarea>
+        </div>
+        <div class="form-group">
+          <label>Notes</label>
+          <textarea class="form-control" ng-model="wine.tasting.notes" ng-disabled="!edit" rows="4" placeholder="notes"></textarea>
+        </div>
+      </form>
+    </div>
+    <div class="col-md-3">
+      <h4>Getting</h4>
+      <form role="form">
+        <div class="form-group">
+          <label>Date</label>
+          <textarea class="form-control" ng-disabled="!edit" rows="1" placeholder="date"></textarea>
+        </div>
+        <div class="form-group">
+          <label>Price</label>
+          <textarea class="form-control" ng-disabled="!edit" rows="1" placeholder="price"></textarea>
+        </div>
+        <div class="form-group">
+          <label>Place</label>
+          <textarea class="form-control" ng-disabled="!edit" rows="1" placeholder="place"></textarea>
+        </div>
+        <div class="form-group">
+          <label>Notes</label>
+          <textarea class="form-control" ng-disabled="!edit" rows="2" placeholder="notes"></textarea>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3">
+      <h4>Additional notes</h4>
+      <form role="form">
+        <div class="form-group">
+          <label>Notes</label>
+          <textarea class="form-control" ng-disabled="!edit" rows="6" placeholder="story"></textarea>
+        </div>
+      </form>
+    </div>
+  </div>
 
-<h1>{{wine.name}}</h1>
-
-<!-- <p>{{wine.description}}</p>  -->
-<p>Todo: add the wine description here</p>
-
-<ul class="wine-thumbs">
-  <li ng-repeat="img in wine.images">
-    <img ng-src="{{img}}">
-  </li>
-</ul>
-
-<ul class="specs">
-  <li>
-    <span>Region and Winery</span>
-    <dl>
-      <dt>Region</dt>
-      <dd>{{wine.bla}}</dd>
-    </dl>
-  </li>
-  <li>
-    <span>Grape</span>
-    <dl>
-      <dt>Name</dt>
-      <dd>{{wine.bla}}</dd>
-      <dt>Description</dt>
-      <dd>{{wine.bla}}</dd>
-      <dt>Notes</dt>
-      <dd>{{wine.bla}}</dd>
-    </dl>
-  </li>
-  <li>
-    <span>Tasting</span>
-    <dl>
-      <dt>Date</dt>
-      <dd>{{wine.bla}}</dd>
-      <dt>Score</dt>
-      <dd>{{wine.bla}}</dd>
-      <dt>Notes</dt>
-      <dd>{{wine.bla}}</dd>
-    </dl>
-  </li>
-  <li>
-    <span>Getting</span>
-    <dl>
-      <dt>Date</dt>
-      <dd>{{wine.bla}}</dd>
-      <dt>Price per bottle</dt>
-      <dd>{{wine.bla}}</dd>
-      <dt>Notes</dt>
-      <dd ng-repeat="note in wine.blas">{{note}}</dd>
-    </dl>
-  </li>
- <li>
-    <span>Additional Notes</span>
-    <dd>{{wine.bla}}</dd>
-  </li>
-</ul>
+</div>

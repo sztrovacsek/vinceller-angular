@@ -10,7 +10,7 @@ wineControllers.controller('WineListCtrl', ['$scope', '$http',
       $scope.wines = data;
     });
 
-    $scope.orderProp = 'age';
+    $scope.orderProp = '-id';
   }]);
 
 wineControllers.controller('WineDetailCtrl', ['$scope', '$routeParams', '$http',

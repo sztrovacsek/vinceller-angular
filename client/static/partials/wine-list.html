@@ -7,7 +7,7 @@
       Sort by:
       <select class="form-control" ng-model="orderProp">
         <option value="name">Alphabetical</option>
-        <option value="age">Newest</option>
+        <option value="id">Newest</option>
       </select>
       Have something new?
       <a class="btn btn-default form-control" href="/upload">Add new</a>
@@ -18,9 +18,9 @@
 
       <ul class="wines">
         <li ng-repeat="wine in wines | filter:query | orderBy:orderProp" class="thumbnail">
-          <a href="#/wines/{{wine.id}}" class="thumb"><img ng-src="{{wine.imageUrl}}"></a>
+          <a href="#/wines/{{wine.id}}" class="thumb"><img ng-src="/uploads/{{wine.photo_url}}"></a>
           <a href="#/wines/{{wine.id}}">{{wine.name}}</a>
-          <p>{{wine.snippet}}</p>
+          <p>{{wine.description}}</p>
         </li>
       </ul>
 

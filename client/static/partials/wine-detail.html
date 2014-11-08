@@ -1,9 +1,9 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-3" >
-      <img ng-src="{{wine.imageUrl}}" class="wine">
+    <div class="col-md-5" >
+      <img ng-src="/uploads/{{wine.photo_url}}" class="wine">
     </div>
-    <div class="col-md-9">
+    <div class="col-md-7">
       <form role="form">
         <h1 ng-hide="edit">{{wine.name}}</h1>
         <textarea class="form-control" ng-model="wine.name" style="margin-bottom:2em; border:solid;" ng-show="edit" rows="1" placeholder="wine title"></textarea>

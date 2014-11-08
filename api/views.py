@@ -13,7 +13,7 @@ from .models import *
 logger = logging.getLogger(__name__)
 
 
-def raw_wine_list(request):
+def api_wine_list(request):
     wines = Wine.objects.all()
     data = []
     for wine in wines:
@@ -21,16 +21,33 @@ def raw_wine_list(request):
         raw_wine_data = json.loads(wine.json)
         wine_data = {}
         wine_data["id"] =  wine.pk
-        wine_data["age"] =  wine.pk
-        wine_data["name"] = "Duennium 2009"
-        wine_data["snippet"] = "The best Hungarian wine ever"
-        wine_data["imageUrl"] = "/uploads/{0}".format(raw_wine_data["photo_url"])
-        wine_data["bla"] = "(and some further information should come here)"
+        wine_data["name"] = raw_wine_data.get("name", "Sample wine")
+        wine_data["description"] = \
+            raw_wine_data.get("description", "Sample description")
+        wine_data["photo_url"] = "{0}".format(raw_wine_data["photo_url"])
         data.append(wine_data)
     return HttpResponse(
         json.dumps(data, sort_keys=True, separators=(',',':'), indent=4),
         content_type='application/json'
     )
+
+
+def api_wine_detail(request, wine_id):
+    wine = get_object_or_404(Wine, pk=wine_id)
+    raw_wine_data = json.loads(wine.json)
+    wine_data = {}
+    wine_data["id"] =  wine.pk
+    wine_data["name"] = raw_wine_data.get("name", "Sample wine")
+    wine_data["description"] = \
+        raw_wine_data.get("description", "Sample description")
+    # assume it contains photo_url
+    wine_data["photo_url"] = "{0}".format(raw_wine_data["photo_url"])
+    
+    return HttpResponse(
+        json.dumps(wine_data, sort_keys=True, separators=(',',':'), indent=4),
+        content_type='application/json'
+    )
+
 
 """
 POST:{'age': '18',
@@ -42,7 +59,7 @@ POST:{'age': '18',
 
 """
 @csrf_exempt
-def raw_wine_update(request):
+def api_wine_update(request):
     print("Request received: {0}".format(request.POST));
     data = request.POST
     wine_id = data["id"]
@@ -51,30 +68,11 @@ def raw_wine_update(request):
         if wine:
             print("Wine found: {0}".format(wine))
             wine.json = json.dumps(data)
-            import pdb; pdb.set_trace()
             print("Wine updated: {0}".format(wine))
             wine.save()
     reply = {"OK"}
     return HttpResponse(
         json.dumps(reply, sort_keys=True, separators=(',',':'), indent=4),
-        content_type='application/json'
-    )
-
-
-def raw_wine_detail(request, wine_id):
-    wine = get_object_or_404(Wine, pk=wine_id)
-    data = {}
-    # assume it contains photo_url
-    raw_wine_data = json.loads(wine.json)
-    data["id"] =  wine.pk
-    data["age"] =  wine.pk
-    data["name"] = "Duennium 2009"
-    data["snippet"] = "The best Hungarian wine ever"
-    data["imageUrl"] = "/uploads/{0}".format(raw_wine_data["photo_url"])
-    data["bla"] = "(and some further information should come here)"
-    
-    return HttpResponse(
-        json.dumps(data, sort_keys=True, separators=(',',':'), indent=4),
         content_type='application/json'
     )
 
@@ -95,7 +93,7 @@ def upload_file_view(request):
         if form.is_valid():
             handle_uploaded_file(request.FILES['photo'])
             messages.info(request, "File upload was successful")
-            return redirect(reverse('raw'))
+            return redirect(reverse('index-view'))
     else:
         form = UploadFileForm()
 

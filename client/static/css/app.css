@@ -10,15 +10,13 @@ body {
 
 .thumb {
   float: left;
-  margin: -0.5em 1em 1.5em 0;
-  height: 100px;
+  margin: 0 1em 1.5em 0;
+  height: 133px;
   width: 100px;
 }
 
 .wines li {
-  clear: both;
-  height: 115px;
-  padding-top: 15px;
+  height: 145px;
 }
 
 /** Detail View **/
@@ -29,8 +27,8 @@ img.wine {
   margin-bottom: 2em;
   background-color: white;
   padding: 2em;
-  height: 200px;
-  width: 200px;
+  height: 400px;
+  width: 400px;
 }
 
 

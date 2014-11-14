@@ -16,6 +16,10 @@ wineApp.config(['$routeProvider', '$httpProvider',
         templateUrl: 'partials/wine-list.html',
         controller: 'WineListCtrl'
       }).
+      when('/wines/new', {
+        templateUrl: 'partials/wine-new.html',
+        controller: 'WineDetailCtrl'
+      }).
       when('/wines/:wineId', {
         templateUrl: 'partials/wine-detail.html',
         controller: 'WineDetailCtrl'

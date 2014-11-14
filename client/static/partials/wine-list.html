@@ -10,7 +10,7 @@
         <option value="id">Newest</option>
       </select>
       Have something new?
-      <a class="btn btn-default form-control" href="/upload">Add new</a>
+      <a class="btn btn-default form-control" href="#/wines/new">Add new</a>
 
     </div>
     <div class="col-md-10">
@@ -18,7 +18,7 @@
 
       <ul class="wines">
         <li ng-repeat="wine in wines | filter:query | orderBy:orderProp" class="thumbnail">
-          <a href="#/wines/{{wine.id}}" class="thumb"><img ng-src="/uploads/{{wine.photo_url}}"></a>
+          <a href="#/wines/{{wine.id}}" class="thumb"><img ng-src="{{wine.photo_url}}"></a>
           <a href="#/wines/{{wine.id}}">{{wine.name}}</a>
           <p>{{wine.description}}</p>
         </li>

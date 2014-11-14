@@ -1,0 +1,54 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 col-xs-12">
+      <h3>Add a new wine</h3>
+      
+      <div class="form-group">
+        <input class="from-control" type="file" id="files"/>
+      </div>
+      <p id="status">Please select a file</p>
+      <div style="border:1px solid gray;"  id="preview"><img src="https://s3-eu-west-1.amazonaws.com/vincang-test/WineBottle.jpg" style="width:300px;" /></div>
+      <form role="form" method="POST" action="/upload2/">
+        <div class="form-group">
+          <!--
+          <input class="form-control" type="text" name="winename" placeholder="Wine title" /><br />
+          -->
+          <input class="form-control" type="hidden" id="avatar_url" name="avatar_url" value="https://s3-eu-west-1.amazonaws.com/vincang-test/WineBottle.jpg" />
+        </div>
+        <div class="form-group">
+          <input class="btn btn-default" type="submit" value="Save wine" />
+        </div>
+      </form>
+
+    </div>
+  </div>
+
+</div>
+<script type="text/javascript">
+function s3_upload(){
+    var status_elem = document.getElementById("status");
+    var url_elem = document.getElementById("avatar_url");
+    var preview_elem = document.getElementById("preview");
+    var s3upload = new S3Upload({
+        file_dom_selector: 'files',
+        s3_sign_put_url: '/sign_s3/',
+        onProgress: function(percent, message) {
+            status_elem.innerHTML = 'Upload progress: ' + percent + '% ' + message;
+        },
+        onFinishS3Put: function(url) {
+            status_elem.innerHTML = 'Upload completed. Uploaded to: '+ url;
+            url_elem.value = url;
+            preview_elem.innerHTML = '<img src="'+url+'" style="width:300px;" />';
+        },
+        onError: function(status) {
+            status_elem.innerHTML = 'Upload error: ' + status;
+        }
+    });
+}
+
+(function() {
+    var input_element = document.getElementById("files");
+    input_element.onchange = s3_upload;
+})();
+</script>
+

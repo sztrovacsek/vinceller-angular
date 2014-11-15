@@ -92,6 +92,12 @@ STATIC_URL = '/app/'
 STATIC_ROOT = 'staticfiles'
 STATICFILES_DIRS = ['staticfrontend']
 
+# Simplified static file serving.
+# https://warehouse.python.org/project/whitenoise/
+
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+
+
 MEDIA_URL = '/uploads/'
 MEDIA_ROOT = 'user_uploads'
 

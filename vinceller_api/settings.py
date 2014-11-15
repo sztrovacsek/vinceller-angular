@@ -90,6 +90,7 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 STATIC_URL = '/app/'
 STATIC_ROOT = 'staticfiles'
+STATICFILES_DIRS = ['staticfrontend']
 
 MEDIA_URL = '/uploads/'
 MEDIA_ROOT = 'user_uploads'

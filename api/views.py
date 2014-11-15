@@ -92,7 +92,7 @@ def api_sign_s3(request):
     # Load necessary information into the application:
     AWS_ACCESS_KEY = os.environ.get('AWS_ACCESS_KEY')
     AWS_SECRET_KEY = os.environ.get('AWS_SECRET_KEY')
-    S3_BUCKET = 'aws-uploader-hanna' 
+    S3_BUCKET = 'vincang-test' 
 
     # Collect information on the file from the GET parameters of the request:
     # mime_type = request.args.get('s3_object_type')

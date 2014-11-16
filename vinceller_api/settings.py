@@ -38,7 +38,6 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'api',
-    'client'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -94,9 +93,7 @@ STATICFILES_DIRS = ['staticfrontend']
 
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/
-
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
-
 
 MEDIA_URL = '/uploads/'
 MEDIA_ROOT = 'user_uploads'

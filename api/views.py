@@ -7,7 +7,6 @@ from hashlib import sha1
 from django.shortcuts import render, redirect, get_object_or_404
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse
-from django.views.decorators.csrf import csrf_exempt
 
 from django.contrib import messages
 from django import forms
@@ -66,7 +65,6 @@ POST:{'age': '18',
 
 """
 @login_required
-@csrf_exempt
 def api_wine_update(request):
     print("Request received: {0}".format(request.POST));
     data = request.POST
@@ -86,7 +84,6 @@ def api_wine_update(request):
 
 
 @login_required
-@csrf_exempt
 def api_sign_s3(request):
     print("Signing aws request")
     # Load necessary information into the application:
@@ -132,7 +129,6 @@ def api_sign_s3(request):
 
 
 @login_required
-@csrf_exempt
 def api_wine_new(request):
     print("Request (add wine) received: {0}".format(request.POST));
     data = {} 

@@ -1,5 +1,6 @@
 import logging
 import json
+import time
 
 import time, os, base64, hmac, urllib
 from hashlib import sha1
@@ -97,7 +98,7 @@ def api_sign_s3(request):
     
     # Come up with a filename
     n = Wine.objects.count()
-    object_name = 'wine_photo_{0}.jpg'.format(n+1)
+    object_name = 'wine_photo_{0}-{1}.jpg'.format(n+1, int(time.time()))
 
     # Set the expiry time of the signature (in seconds) and declare the permissions of the file to be uploaded
     expires = int(time.time()+10)

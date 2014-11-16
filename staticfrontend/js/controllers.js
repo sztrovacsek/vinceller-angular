@@ -33,6 +33,7 @@ wineControllers.controller('WineDetailCtrl', ['$scope', '$routeParams', '$http',
       // post the data to the server
       $.ajax({
         url: "/api/wine_update",
+        headers: {'X-CSRFToken': $.cookie('csrftoken')},
         data: $scope.wine,
         type: "POST",
         dataType: "JSON",

@@ -11,6 +11,7 @@ from django.http import HttpResponse
 from django.contrib import messages
 from django import forms
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
 from .models import *
 
@@ -76,7 +77,7 @@ def api_wine_update(request):
             wine.json = json.dumps(data)
             print("Wine updated: {0}".format(wine))
             wine.save()
-    reply = {"OK"}
+    reply = {"reply": "OK",}
     return HttpResponse(
         json.dumps(reply, sort_keys=True, separators=(',',':'), indent=4),
         content_type='application/json'
@@ -129,6 +130,7 @@ def api_sign_s3(request):
 
 
 @login_required
+@csrf_exempt
 def api_wine_new(request):
     print("Request (add wine) received: {0}".format(request.POST));
     data = {} 

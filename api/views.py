@@ -95,7 +95,7 @@ def api_sign_s3(request):
     S3_BUCKET = 'vincang-test' 
 
     # Collect information on the file from the GET parameters of the request:
-    # mime_type = request.args.get('s3_object_type')
+    mime_type = request.GET['s3_object_type']
     
     # Come up with a filename
     n = Wine.objects.count()
@@ -106,8 +106,7 @@ def api_sign_s3(request):
     amz_headers = "x-amz-acl:public-read"
  
     # Generate the PUT request that JavaScript will use:
-    # put_request = "PUT\n\n%s\n%d\n%s\n/%s/%s" % (mime_type, expires, amz_headers, S3_BUCKET, object_name)
-    put_request = "PUT\n\n%d\n%s\n/%s/%s" % (expires, amz_headers, S3_BUCKET, object_name)
+    put_request = "PUT\n\n%s\n%d\n%s\n/%s/%s" % (mime_type, expires, amz_headers, S3_BUCKET, object_name)
      
     # Generate the signature with which the request can be signed:
     signature = base64.encodestring(hmac.new(AWS_SECRET_KEY.encode(), put_request.encode(), sha1).digest())

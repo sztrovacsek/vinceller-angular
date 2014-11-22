@@ -1,29 +1,59 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-md-2">
-      <!--Sidebar content-->
-
-      Search: <input class="form-control" ng-model="query">
-      Sort by:
-      <select class="form-control" ng-model="orderProp">
-        <option value="name">Alphabetical</option>
-        <option value="id">Newest</option>
-      </select>
-      Have something new?
-      <a class="btn btn-default form-control" href="#/wines/new">Add new</a>
-
+    <div class="col-xs-12">
+      <!--
+      <h1>Kelder</h1>
+      -->
     </div>
-    <div class="col-md-10">
-      <!--Body content-->
-
-      <ul class="wines">
-        <li ng-repeat="wine in wines | filter:query | orderBy:orderProp" class="thumbnail">
-          <a href="#/wines/{{wine.id}}" class="thumb"><img ng-src="{{wine.photo_url}}"></a>
-          <a href="#/wines/{{wine.id}}">{{wine.name}}</a>
+  </div>
+  <div class="row" style="background-color: #CC9900;">
+    <div class="col-md-6 col-sm-6 col-xs-12">
+      <div class="row text-center">
+        <div class="col-md-12 col-sm-12">
+        Search:
+        <input class="form-control" ng-model="query">
+        </div>
+      </div>
+      <div class="row text-center">
+        <div class="col-md-12">Filter:</div>
+        <div class="col-sm-4 col-xs-4"><label class="btn btn-default"><input type="checkbox" name="checkbox1">Avail.</label></div>
+        <div class="col-sm-4 col-xs-4"><label class="btn btn-default"><input type="checkbox" name="checkbox2">Taste</label></div>
+        <div class="col-sm-4 col-xs-4"><label class="btn btn-default"><input type="checkbox" name="checkbox3">Wish</label></div>
+      </div>
+      <div class="row">
+        &nbsp;
+      </div>
+    </div>
+    <div class="col-md-6 col-sm-6 col-xs-12">
+      <div class="row text-center">
+        <div class="col-md-12">
+        Have something new?
+        <a class="btn btn-default form-control" href="#/wines/new">Add new</a>
+        <br>
+        Sort by:
+        <select class="form-control" ng-model="orderProp">
+          <option value="name">Alphabetical</option>
+          <option value="id">Newest</option>
+        </select>
+        </div>
+      </div>
+      <div class="row">
+        &nbsp;
+      </div>
+    </div>
+  <!-- end of row (menu) -->
+  </div>
+  <div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+      <div class="col-md-3 col-sm-6 col-xs-12" style="padding: 5px;" ng-repeat="wine in wines | filter:query | orderBy:orderProp">
+        <div style="border: solid gray 1px; height: 150px; padding: 5px;">  
+          <a href="#/wines/{{wine.id}}"><img class="thumb" ng-src="{{wine.photo_url}}"></a>
+          <b><a href="#/wines/{{wine.id}}">{{wine.name}}</a></b>
           <p>{{wine.description}}</p>
-        </li>
-      </ul>
-
+        </div>
+      </div>
     </div>
+
+  <!-- end of row (thumbnails) -->
   </div>
 </div>

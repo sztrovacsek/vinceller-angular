@@ -1,32 +1,19 @@
 /* app css stylesheet */
 
-body {
-  padding-top: 20px;
-}
-
-.wines {
-  list-style: none;
-}
-
 .thumb {
   float: left;
-  margin: 0 1em 1.5em 0;
-  height: 133px;
+  height: 138px;
   width: 100px;
+  margin: 0 10px 0 0;
 }
 
-.wines li {
-  height: 145px;
-}
 
 /** Detail View **/
 img.wine {
-  float: left;
-  border: 1px solid black;
-  margin-right: 3em;
-  margin-bottom: 2em;
-  background-color: white;
-  padding: 2em;
+  display: block;
+  margin: auto;
+  border: 1px solid gray;
+  padding: 2px;
   height: 400px;
   width: 400px;
 }

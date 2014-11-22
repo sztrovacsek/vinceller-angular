@@ -19,6 +19,17 @@ from .models import *
 logger = logging.getLogger(__name__)
 
 
+def api_user_info(request):
+    data = {}
+    data["response_to"] = "api_user_info"
+    data["username"] = request.user.username
+    data["logged_in"] = request.user.is_authenticated()
+    return HttpResponse(
+        json.dumps(data, sort_keys=True, separators=(',',':'), indent=4),
+        content_type='application/json'
+    )
+
+
 @login_required
 def api_wine_list(request):
     wines = Wine.objects.all()

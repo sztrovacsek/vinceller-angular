@@ -7,7 +7,22 @@
     </div>
   </div>
   <div class="row" style="background-color: #CC9900;">
-    <div class="col-md-6 col-sm-6 col-xs-12">
+    <div class="col-md-4 col-sm-4 col-xs-12">
+      <div class="row text-center">
+        <div class="col-md-12 col-sm-12" ng-show="!user_logged_in">
+          Welcome! Please log in!
+          <a class="form-control" href="/login">Login</a>
+        </div>
+        <div class="col-md-12 col-sm-12" ng-show="user_logged_in">
+          <h3>Welcome, {{username}}!</h3>
+        </div>
+      </div>
+      <div class="row">
+        &nbsp;
+      </div>
+      <!-- end: col (login, case: not logged in)-->
+    </div>
+    <div class="col-md-4 col-sm-4 col-xs-12">
       <div class="row text-center">
         <div class="col-md-12 col-sm-12">
         Search:
@@ -24,7 +39,7 @@
         &nbsp;
       </div>
     </div>
-    <div class="col-md-6 col-sm-6 col-xs-12">
+    <div class="col-md-4 col-sm-4 col-xs-12">
       <div class="row text-center">
         <div class="col-md-12">
         Have something new?

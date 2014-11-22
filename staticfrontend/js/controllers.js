@@ -10,6 +10,11 @@ wineControllers.controller('WineListCtrl', ['$scope', '$http',
       $scope.wines = data;
     });
 
+    $http.get('/api/user_info').success(function(data) {
+      $scope.username = data.username;
+      $scope.user_logged_in = data.logged_in;
+    });
+
     $scope.orderProp = '-id';
   }]);
 

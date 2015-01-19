@@ -9,11 +9,9 @@ from django.contrib.auth import views as auth_views
 from api.views import *
 
 urlpatterns = patterns('',
-    # Examples:
-
-    url(r'^admin/', include(admin.site.urls)),
     # url(r'^$', index_view, name='index-view'),
     # url(r'^$', RedirectView.as_view(url='/login/', permanent=False)),
+    url(r'^admin/', include(admin.site.urls)),
     url(r'^login/$', auth_views.login,
         {'template_name': 'api/login.html'},
         name='login'),

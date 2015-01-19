@@ -54,7 +54,7 @@ def api_wine_list(request):
 def api_wine_detail(request, wine_id):
     wine = get_object_or_404(Wine, pk=wine_id)
     raw_wine_data = json.loads(wine.json)
-    wine_data = {}
+    wine_data = raw_wine_data
     wine_data["id"] =  wine.pk
     wine_data["name"] = raw_wine_data.get("name", "Sample wine")
     wine_data["description"] = \
@@ -157,12 +157,16 @@ def api_wine_new(request):
 @login_required
 def raw_view(request):
     wines = Wine.objects.all()
+    reply = []
     for wine in wines:
         data = json.loads(wine.json)
         url = data['photo_url']
-        wine.tmp_url = url
         print("Wine: pk={0}, url= {1}".format(wine.pk, url))
-    return render(request, 'api/raw.html', {'wines': wines})
+        reply.append(data)
+    return HttpResponse(
+        json.dumps(reply, sort_keys=True, separators=(',',':'), indent=4),
+        content_type='application/json'
+    )
 
 
 @login_required

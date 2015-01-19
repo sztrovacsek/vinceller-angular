@@ -22,6 +22,7 @@ wineControllers.controller('WineDetailCtrl', ['$scope', '$routeParams', '$http',
   function($scope, $routeParams, $http) {
     $http.get('/api/wine_detail/' + $routeParams.wineId).success(function(data) {
       $scope.wine = data;
+      console.log($scope.wine);
     });
 
     $scope.edit = false;

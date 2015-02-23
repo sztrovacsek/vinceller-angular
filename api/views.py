@@ -44,6 +44,8 @@ def api_wine_list(request):
         # assume it contains photo_url
         wine_data["photo_url"] = "{0}".format(raw_wine_data["photo_url"])
         wine_data["status"] = raw_wine_data.get("status", "available")
+        if "genre" in raw_wine_data:
+            wine_data["genre"] = raw_wine_data["genre"]
         data.append(wine_data)
 
     return HttpResponse(

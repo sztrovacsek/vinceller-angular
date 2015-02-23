@@ -16,7 +16,7 @@
       <!-- search -->
       <div class="row text-center">
         <div class="col-md-12 col-sm-12">
-        <input class="form-control" ng-model="query" placeholder="search">
+        <input class="form-control" ng-model="search_query" placeholder="search">
         </div>
       </div>
       <div class="row">&nbsp;</div>
@@ -24,9 +24,9 @@
     <div class="col-md-3 col-sm-3 col-xs-12">
       <!-- filter -->
       <div class="row text-center">
-        <div class="col-sm-4 col-xs-4"><label class="form-control btn btn-default"><input type="checkbox" name="checkbox1">Avail.</label></div>
-        <div class="col-sm-4 col-xs-4"><label class="form-control btn btn-default"><input type="checkbox" name="checkbox2">Tasted</label></div>
-        <div class="col-sm-4 col-xs-4"><label class="form-control btn btn-default"><input type="checkbox" name="checkbox3">Wished</label></div>
+        <div class="col-sm-4 col-xs-4"><label class="form-control btn btn-default"><input type="checkbox" name="checkbox1" ng-model="check_avail">Avail.</label></div>
+        <div class="col-sm-4 col-xs-4"><label class="form-control btn btn-default"><input type="checkbox" name="checkbox2" ng-model="check_tasted">Tasted</label></div>
+        <div class="col-sm-4 col-xs-4"><label class="form-control btn btn-default"><input type="checkbox" name="checkbox3" ng-model="check_wished">Wished</label></div>
       </div>
       <div class="row">&nbsp;</div>
     </div>
@@ -55,7 +55,7 @@
   </div>
   <div class="row">
     <div class="col-md-12 col-sm-12 col-xs-12">
-      <div class="col-md-3 col-sm-6 col-xs-12" style="padding: 5px;" ng-repeat="wine in wines | filter:query | orderBy:orderProp">
+      <div class="col-md-3 col-sm-6 col-xs-12" style="padding: 5px;" ng-repeat="wine in wines | presence:check_avail:check_tasted:check_wished | filter:search_query | orderBy:orderProp">
         <div style="border: solid gray 1px; height: 150px; padding: 5px;">  
           <a href="#/wines/{{wine.id}}"><img class="thumb" ng-src="{{wine.photo_url}}"></a>
           <b><a href="#/wines/{{wine.id}}">{{wine.name}}</a></b>

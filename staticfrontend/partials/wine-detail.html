@@ -10,7 +10,8 @@
           <textarea class="form-control" ng-model="wine.name" style="margin-bottom:2em; border:solid;" ng-show="edit" rows="1" placeholder="wine title"></textarea>
           <textarea class="form-control" ng-model="wine.description" ng-readonly="!edit" rows="4" placeholder="wine description"></textarea>
           <p>
-          <p>
+        </div>
+        <div class="col-md-8">
           <button class="btn" ng-show="!edit" ng-click="startEdit()">
             <i class="glyphicon glyphicon-pencil"></i> Edit
           </button> 
@@ -20,6 +21,15 @@
           <button class="btn" ng-show="edit" ng-click="cancelEdit()">
             <i class="glyphicon glyphicon-star-empty"></i> Cancel
           </button> 
+          <p>
+        </div>
+        <div class="col-md-4">
+          <select class="form-control" ng-model="wine.status" ng-disabled="!edit">
+            <option value="available">Available</option>
+            <option value="tasted">Tasted</option>
+            <option value="wished">Wished</option>
+          </select>
+          <p>
         </div>
         <div class="col-md-4">
           <h4>Grape, Region and Winery</h4>

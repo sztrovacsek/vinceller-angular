@@ -4,18 +4,34 @@
 
 var wineControllers = angular.module('wineControllers', []);
 
-wineControllers.controller('WineListCtrl', ['$scope', '$http',
-  function($scope, $http) {
+wineControllers.filter('presence', function() {
+  return function(input, avail, tasted, wished){
+    input = input || [];
+    var output = [];
+    for (var i =0; i < input.length; i++){
+      var wine = input[i];
+      if (avail && wine.status == "available") { output.push(wine); }
+      if (tasted && wine.status =="tasted") { output.push(wine); }
+      if (wished && wine.status == "wished") { output.push(wine); }
+    }
+    return output;
+  };
+});
+
+wineControllers.controller('WineListCtrl', ['$scope', '$http', 'presenceFilter',
+  function($scope, $http, presenceFilter) {
+    $scope.orderProp = '-id';
+    $scope.check_avail = true;
+
     $http.get('/api/wine_list').success(function(data) {
       $scope.wines = data;
+      $scope.filteredWines = presenceFilter($scope.wines, $scope.check_avail, $scope.check_tasted, $scope.check_wished);
     });
 
     $http.get('/api/user_info').success(function(data) {
       $scope.username = data.username;
       $scope.user_logged_in = data.logged_in;
     });
-
-    $scope.orderProp = '-id';
   }]);
 
 wineControllers.controller('WineDetailCtrl', ['$scope', '$routeParams', '$http',

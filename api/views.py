@@ -35,15 +35,17 @@ def api_wine_list(request):
     wines = Wine.objects.all()
     data = []
     for wine in wines:
-        # assume it contains photo_url
         raw_wine_data = json.loads(wine.json)
         wine_data = {}
         wine_data["id"] =  wine.pk
         wine_data["name"] = raw_wine_data.get("name", "Sample wine")
         wine_data["description"] = \
             raw_wine_data.get("description", "Sample description")
+        # assume it contains photo_url
         wine_data["photo_url"] = "{0}".format(raw_wine_data["photo_url"])
+        wine_data["status"] = raw_wine_data.get("status", "available")
         data.append(wine_data)
+
     return HttpResponse(
         json.dumps(data, sort_keys=True, separators=(',',':'), indent=4),
         content_type='application/json'
@@ -61,6 +63,7 @@ def api_wine_detail(request, wine_id):
         raw_wine_data.get("description", "Sample description")
     # assume it contains photo_url
     wine_data["photo_url"] = "{0}".format(raw_wine_data["photo_url"])
+    wine_data["status"] = raw_wine_data.get("status", "available")
     
     return HttpResponse(
         json.dumps(wine_data, sort_keys=True, separators=(',',':'), indent=4),

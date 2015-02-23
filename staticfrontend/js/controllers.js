@@ -36,12 +36,12 @@ wineControllers.controller('WineListCtrl', ['$scope', '$http', 'presenceFilter',
 
 wineControllers.controller('WineDetailCtrl', ['$scope', '$routeParams', '$http',
   function($scope, $routeParams, $http) {
+    $scope.edit = false;
+
     $http.get('/api/wine_detail/' + $routeParams.wineId).success(function(data) {
       $scope.wine = data;
       console.log($scope.wine);
     });
-
-    $scope.edit = false;
 
     $scope.startEdit = function(){
       console.log("Enable editing");

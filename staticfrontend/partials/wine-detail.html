@@ -33,7 +33,12 @@
         </div>
         <div class="col-md-4">
           <h4>Grape, Region and Winery</h4>
-          <textarea class="form-control" ng-model="wine.region" ng-disabled="!edit" rows="4" placeholder="region information"></textarea>
+          <select class="form-control" ng-model="wine.genre" ng-disabled="!edit">
+            <option value="red" selected>Red</option>
+            <option value="rose">Rosé</option>
+            <option value="white">White</option>
+          </select>
+          <textarea class="form-control" ng-model="wine.region" ng-disabled="!edit" rows="3" placeholder="region information"></textarea>
           <textarea class="form-control" ng-model="wine.grape" ng-disabled="!edit" rows="1" placeholder="grape name"></textarea>
         </div>
         <div class="col-md-4">
